@@ -11,10 +11,8 @@ namespace Project_CA
     public class Functionality
     {
         static string fullFileName = @"C:\Users\fedor\Desktop\Math\";
-        static string sample = "Dimensions:\nLength:\nWidth:";
+        //static string sample = "Dimensions:\nLength:\nWidth:";
         static string fileName;
-        float length;
-        float width;
         
         public static void CreateFile() 
         {
@@ -23,7 +21,9 @@ namespace Project_CA
             
             if (File.Exists(fullFileName + fileName))
             {
-                Console.WriteLine("A file with this name already exists. Do you want to re-record it?");
+                Console.WriteLine("A file with this name already exists. Do you want to re-record it?" +
+                    "\n1.Yes" +
+                    "\n2.No");
                 int choiceStatus = Int32.Parse(Console.ReadLine());
                 switch (choiceStatus) 
                 {
@@ -32,20 +32,15 @@ namespace Project_CA
                         break;
 
                     case 2:
-                        Console.WriteLine("to be continue");
+                        CreateFile();
                         break;
+                        
                 }
                 
             }
             FileStream fileStream = File.Create(fullFileName + fileName);
-            
-            StreamWriter streamWriter = new StreamWriter(fileStream);
-            streamWriter.Write(sample);
-            streamWriter.Close();
-            
 
         }
-
         public static void OpenFile()
         {
             Console.WriteLine("Entry file:");
@@ -59,15 +54,16 @@ namespace Project_CA
             fileName = Console.ReadLine();
             using(StreamReader sr =  new StreamReader(fullFileName + fileName))
             {
-                string line;
-                while ((line = sr.ReadLine()) != null) 
+                string info;
+                while ((info = sr.ReadLine()) != null) 
                 {
-                    Console.WriteLine(line);
+                    Console.WriteLine(info);
                 }
             }
 
 
         }
+        
 
     }
 

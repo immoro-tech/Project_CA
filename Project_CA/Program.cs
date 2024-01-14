@@ -11,7 +11,9 @@ namespace Project_CA
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Choose an action:");
+            Console.WriteLine("Choose an action:" +
+                "\n1.Create file" +
+                "\n2.Open file");
             int actionStatus = Int32.Parse(Console.ReadLine());
             switch(actionStatus)
             {
@@ -24,7 +26,9 @@ namespace Project_CA
                     Functionality.OpenFile();
                     break;
             }
-            
+
+            float weigth;
+            float heigth;
 
             Console.ReadKey();
         }

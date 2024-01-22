@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Project_CA
 {
+   
     public class Functionality
     {
-        static string fullFileName = @"C:\Users\fedor\Desktop\Math\";
-        //static string sample = "Dimensions:\nLength:\nWidth:";
-        static string fileName;
-        
-        public static void CreateFile() 
+        public static string fullFileName = @"C:\Users\fedor\Desktop\Math\";
+        public static string fileName;
+        public static List<string> parametrs = new List<string>();
+        public static void CreateFile()
         {
             Console.WriteLine("Entry filename: ");
             string fileName = Console.ReadLine();
@@ -49,22 +52,43 @@ namespace Project_CA
             {
                 Console.WriteLine(file);
             }
-
+            
             Console.WriteLine("Select file:");
             fileName = Console.ReadLine();
-            using(StreamReader sr =  new StreamReader(fullFileName + fileName))
+            Console.Clear();
+            using(StreamReader sr = new StreamReader(fullFileName + fileName))
             {
                 string info;
+                string[] parametr = { };
                 while ((info = sr.ReadLine()) != null) 
                 {
-                    Console.WriteLine(info);
+                    parametr = info.Split('\n');
+                    parametrs.AddRange(parametr);
                 }
+                GetFile(parametrs);
             }
 
-
+            
         }
-        
 
+        public static void SaveFile(List<string> value) 
+        {
+            using (StreamWriter sw = new StreamWriter(fullFileName + fileName, false)) 
+            {
+                foreach (string par in value) 
+                {
+                    sw.WriteLine(par);
+                }
+            }
+        }
+
+        public static void GetFile(List<string> value) 
+        {
+            foreach(string par in value)
+            {
+                Console.WriteLine(par);
+            }
+        }
     }
 
 }

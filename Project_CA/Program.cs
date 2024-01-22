@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project_CA
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
@@ -27,8 +27,21 @@ namespace Project_CA
                     break;
             }
 
-            float weigth;
-            float heigth;
+            Console.WriteLine("Add or Change dimension:");
+            actionStatus = Int32.Parse(Console.ReadLine());
+
+            switch (actionStatus)
+            {
+                case 1:
+                    FileChanges.AddDimensions();
+                    break;
+                
+                case 2:
+                    FileChanges.ChangesDimensions();
+                    break;
+            }
+
+
 
             Console.ReadKey();
         }
